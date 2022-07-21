@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-md m-auto py-10">
     <h3 class="font-mono font-regular text-3xl mb-4">
-      Add a new artist
+      Add a new Artist
     </h3>
 
     <form @submit.prevent="addArtist">
@@ -33,17 +33,17 @@
             {{ artist.name }}
           </p>
 
-          <button class="bg-tranparent text-sm hover:bg-blue hover:text-white text-blue border border-blue no-underline font-bold py-2 px-4 mr-2 rounded"
+          <button class="bg-tranparent text-sm hover:bg-blue-500 hover:text-white text-blue-500 border border-blue no-underline font-bold py-2 px-4 mr-2 rounded"
           @click.prevent="editArtist(artist)">Edit</button>
 
-          <button class="bg-transprent text-sm hover:bg-red text-red hover:text-white no-underline font-bold py-2 px-4 rounded border border-red"
+          <button class="bg-transprent text-sm hover:bg-red-500 text-red-500 hover:text-white no-underline font-bold py-2 px-4 rounded border border-red-500"
           @click.prevent="removeArtist(artist)">Delete</button>
         </div>
         <div v-if="artist === editedArtist">
           <form action="" @submit.prevent="updateArtist(artist)">
             <div class="mb-6 p-4 bg-white rounded border border-grey-light mt-4">
               <input class="input" v-model="artist.name" />
-              <input type="submit" value="Update" class=" my-2 bg-transparent text-sm hover:bg-blue hover:text-white text-blue border border-blue no-underline font-bold py-2 px-4 rounded cursor-pointer">
+              <input type="submit" value="Update" class=" my-2 bg-transparent text-sm hover:bg-blue-500 hover:text-white text-blue border border-blue no-underline font-bold py-2 px-4 rounded cursor-pointer">
             </div>
           </form>
         </div>
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'IndexArtists',
+  name: 'Artists',
   data () {
     return {
       artists: [],
@@ -86,7 +86,7 @@ export default {
         this.artists.push(data)
         this.newArtist = ''
       } catch (error) {
-        this.$toast.error(error.response.data.error || 'Oopps! Something went wrong.')
+        this.$toast.error(error.response.data.error || 'Oopps! Cannot create artist.')
       }
     },
     async removeArtist (artist) {

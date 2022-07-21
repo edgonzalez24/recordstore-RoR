@@ -161,8 +161,10 @@ export default {
       signedIn: false
     }
   },
-  mounted () {
-    this.signedIn = localStorage.signedIn
+  watch: {
+    '$route' () {
+      this.signedIn = localStorage.signedIn
+    }
   },
   methods: {
     async signOut () {

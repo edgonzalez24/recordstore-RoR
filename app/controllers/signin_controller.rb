@@ -10,7 +10,7 @@ class SigninController < ApplicationController
       tokens = session.login
 
       response.set_cookie(JWTSessions.access_cookie,
-                        value: tokes[:access],
+                        value: tokens[:access],
                         httponly: true,
                         secure: Rails.env.production?)
       render json: { csrf: tokens[:csrf] }
@@ -22,7 +22,7 @@ class SigninController < ApplicationController
   def destroy
     session = JWTSessions::Session.new(payload: payload)
     session.flush_by_access_payload
-    render json :ok
+    render json: :ok
   end
 
   

@@ -55,9 +55,9 @@ export default {
     }
   },
   methods: {
-    signIn () {
+    async signIn () {
       try {
-        const { data } = this.$http.plain.post('/signin', {
+        const { data } = await this.$http.plain.post('/signin', {
           email: this.email,
           password: this.password
         })
