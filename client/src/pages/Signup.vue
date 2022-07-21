@@ -1,8 +1,8 @@
 <template>
   <div class="max-w-sm m-auto my-8">
     <div class="border p-10 border-gray-100 shadow rounded">
-      <h3 class="text-2xl mb-6 text-gray-500 font-bold">Sign In</h3>
-      <form @submit.prevent="signIn">
+      <h3 class="text-2xl mb-6 text-gray-500 font-bold">Sign Up</h3>
+      <form @submit.prevent="signUp">
         <div class="mb-6">
           <label for="email" class="text-gray-700 uppercase">E-mail Address</label>
           <input
@@ -23,16 +23,26 @@
             autocomplete="off"
           >
         </div>
+        <div class="mb-6">
+          <label class="text-gray-700 uppercase">Password Confirmation</label>
+          <input
+            type="password"
+            v-model="password_confirmation"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            placeholder="********"
+            autocomplete="off"
+          >
+        </div>
         <button
           type="submit"
           class="font-sans px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
         >
-            Sign In
+            Sign Up
         </button>
 
         <div class="my-4">
-          <router-link to="/signup" class="underline text-blue-600">
-            Sign Up
+          <router-link to="/" class="underline text-blue-600">
+            Sign In
           </router-link>
         </div>
       </form>
@@ -42,11 +52,12 @@
 
 <script>
 export default {
-  name: 'SignIn',
+  name: 'SignUp',
   data () {
     return {
       email: null,
-      password: null
+      password: null,
+      password_confirmation: null
     }
   },
   mounted () {
@@ -55,11 +66,12 @@ export default {
     }
   },
   methods: {
-    signIn () {
+    signUp () {
       try {
         const { data } = this.$http.plain.post('/signin', {
           email: this.email,
-          password: this.password
+          password: this.password,
+          password_confirmation: this.password_confirmation
         })
         if (data.csrf) {
           localStorage.csrf = data.csrf

@@ -6,6 +6,7 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    watch: true,
 
     // Paths
     assetsSubDirectory: 'static',
