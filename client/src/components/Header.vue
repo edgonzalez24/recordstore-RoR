@@ -23,7 +23,6 @@
               lg:text-3xl
               hover:text-gray-700
               dark:hover:text-gray-300
-              lowercase
             "
             to="/"
             >RecordStore</router-link
